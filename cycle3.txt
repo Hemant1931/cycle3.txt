@@ -1,0 +1,41 @@
+use sales;
+
+select * from vrinda_sales;
+-- 1 find unique sales channels
+
+select distinct sales_channel
+from vrinda_sales
+limit 5;
+
+-- 2 find matching product category
+
+select category as kurta
+from vrinda_products
+limit 10;
+
+
+-- 3 filter and display deliverd sales
+
+select sale_id, order_id, order_date, sales_channel, amount
+from vrinda_sales
+where order_status = 'Delivered'
+
+order by order_date DESC, amount DESC
+limit 10;
+
+-- 4 find unique shipping cities in uttar pradesh 
+
+select ship_state as UTTARPRADESH
+from vrinda_sales
+where order_status = 'Delivered'
+order by ship_city DESC
+limit 10;
+
+-- 5 find sales from selected channels
+
+select sale_id, order_id, order_date, sales_channel, amount, qty
+from vrinda_sales
+where order_status = 'Delivered' 
+	and amount>= 500 && amount<=2000
+order by order_date DESC, amount DESC
+limit 10;
